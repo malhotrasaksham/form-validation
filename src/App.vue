@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <form @submit.prevent="Submit">
-      <div class="formControl" :class="{error: $v.email.$error}">
-        <input type="text" placeholder="Email" v-model="email" @blur="$v.email.$touch()">
+      <div class="formControl" :class="{error: $v.data.email.$error}">
+        <input type="text" placeholder="Email" v-model="data.email" @blur="$v.data.email.$touch()">
       </div>
-      <div class="formControl" :class="{error: $v.age.$error}">
-        <input type="text" placeholder="Age" v-model="age" @blur="$v.age.$touch()">
+      <div class="formControl" :class="{error: $v.data.age.$error}">
+        <input type="text" placeholder="Age" v-model="data.age" @blur="$v.data.age.$touch()">
       </div>
       <div class="formControl">
         <input type="text" placeholder="Pincode">
       </div>
-      <div class="formControl" :class="{error: $v.gender.$error}">
-        <select v-model="gender" @blur="$v.gender.$touch()">
+      <div class="formControl" :class="{error: $v.data.gender.$error}">
+        <select v-model="data.gender" @blur="$v.data.gender.$touch()">
           <option :value="undefined">--Select--</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -30,10 +30,12 @@ export default {
   name: "App",
   data() {
     return {
-      email: undefined,
-      age: undefined,
-      pincode: undefined,
-      gender: undefined
+      data: {
+        email: undefined,
+        age: undefined,
+        pincode: undefined,
+        gender: undefined
+      }
     };
   },
   methods: {
@@ -42,16 +44,18 @@ export default {
     }
   },
   validations: {
-    email: {
-      email,
-      required
-    },
-    age: {
-      numeric,
-      required
-    },
-    gender: {
-      required
+    data: {
+      email: {
+        email,
+        required
+      },
+      age: {
+        numeric,
+        required
+      },
+      gender: {
+        required
+      }
     }
   }
 };
