@@ -19,6 +19,7 @@
       </div>
       <div>
         <button :disabled="$v.$invalid" type="submit">Submit</button>
+        <button type="submit" @click="SubmitCheck()">Submit</button>
       </div>
     </form>
   </div>
@@ -40,7 +41,12 @@ export default {
   },
   methods: {
     Submit() {
-      alert(this.$v.$invalid);
+      alert("Invalid: " + this.$v.$invalid);
+    },
+    SubmitCheck() {
+      if (this.$v.$invalid) {
+        this.$v.data.$touch();
+      }
     }
   },
   validations: {
